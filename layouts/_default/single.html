@@ -24,12 +24,12 @@
 
         {{ end }}
         <div class="entry-meta">
-          <span class="date">{{ .Date.Format "02 January" }}</span>	<span> / </span>
-
-          <span class="author">
+          <span class="date">{{ .Date.Format "02 January, 2006" }}</span>
+          {{ if and (isset .Site.Params "postlistshowauthor") .Site.Params.postListshowauthor }}
+          <span> / </span><span class="author">
             <a href="{{ $writer.link | default .Site.Params.authorlink | absURL }}" title="Posts by {{ .Params.writer | default .Site.Params.author }}" rel="author">{{ .Params.writer | default .Site.Params.author }}</a>
           </span>
-
+          {{ end }}		
 
           {{ range .Params.categories }}
           <span class="category">
@@ -72,23 +72,19 @@
   </p>
 </div>
 
-
-
 <div class="entry-tags"><p><span>Tags</span>
   {{ range $index, $name := .Params.tags }}
   <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" title="View all posts tagged {{ $name }}">{{ $name }}</a>
   {{ end }}
-
 </p></div>	</div>
-
+{{ if and (isset .Site.Params "postlistshowauthor") .Site.Params.postListshowauthor }}
 	{{ if and (isset .Site.Params "author") .Site.Params.author }}
 <div class="author-meta">
-
-  <div class="author">
-    	{{ if and (isset .Params "writer") $writer.email }}
-    <img alt='{{ .Params.writer | default .Site.Params.author }}' src="https://www.gravatar.com/avatar/{{ md5 $writer.email }}?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+    <div class="author">
+    {{ if and (isset .Params "writer") $writer.email }}
+       <img alt='{{ .Params.writer | default .Site.Params.author }}' src="https://www.gravatar.com/avatar/{{ md5 $writer.email }}?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
     {{ else }}
-      <img alt='{{ .Params.writer | default .Site.Params.author }}' src="https://www.gravatar.com/avatar/{{ md5 .Site.Params.email }}?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
+       <img alt='{{ .Params.writer | default .Site.Params.author }}' src="https://www.gravatar.com/avatar/{{ md5 .Site.Params.email }}?s=100&d=identicon" class='avatar avatar-72 photo' height='72' width='72'>
     {{ end }}
     <span>
       Written by:<a href="{{ $writer.link | default .Site.Params.authorlink | absURL}}" title="Posts by {{ .Params.writer | default .Site.Params.author }}" rel="author">{{ .Params.writer | default .Site.Params.author }}</a> </span>
@@ -253,13 +249,13 @@ title="pinterest icon"></i>
 {{end}}
 {{ end }}
 
-
 </div>
 </div>
 {{ end }}
+{{ end }}
 </div>
 </div>
-
+{{ if and (isset .Site.Params "allowcomments") .Site.Params.allowComments }}
 <section id="comments" class="comments">
   {{ template "_internal/disqus.html" . }}
 
@@ -286,10 +282,9 @@ title="pinterest icon"></i>
 </li>
 
 </ol>-->
-
-
 </section>
 </div>
+{{ end }}
 
 <!--</div>--> <!-- .main -->
 

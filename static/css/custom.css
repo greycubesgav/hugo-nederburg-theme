@@ -825,7 +825,7 @@ a img {
   position: relative;
   height: 0;
   padding-bottom: 20%;
-  background-position: 50%;
+  background-position: 50% 25%;
   background-size: cover;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -897,6 +897,7 @@ a img {
   text-decoration: none;
   color: #4d4d4d;
   clear: both;
+  z-index: 20;
 }
 .more-link:link, .more-link:visited {
   color: #4d4d4d;
@@ -1039,7 +1040,7 @@ a img {
 }
 .entry {
   background: white;
-  padding-bottom: 1.5em;
+  padding-bottom: 0.2em;
 }
 
 .entry-meta {
@@ -1057,7 +1058,7 @@ a img {
 }
 
 .entry-content {
-  margin: 3em 0;
+  margin: 0.5em 0;
 }
 .entry-content img.full-width {
   position: relative;
@@ -2029,7 +2030,7 @@ li.pingback:first-child {
     padding: 0.5em 0;
   }
   .menu-secondary-items:before {
-    content: '//';
+    content: '///';
     margin-right: 16px;
     color: white;
     opacity: 0.4;
@@ -2718,4 +2719,46 @@ li.pingback:first-child {
   #bbpress-forums #bbp-search-form #bbp_search {
     width: 500px !important;
   }
+}
+
+/*-----------------------------------------------------------*/
+.postlink {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.page-numbers.current {
+  font-weight: 800;
+  font-style: italic;
+}
+
+.pagination {
+  font-size: 1.5em;
+  line-height: 1.85em;
+  vertical-align: middle;
+}
+
+article figure {
+  font-size: 1.1em;
+  line-height: 1.85em;
+  text-align: center;
+  margin: 0pt;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+article figure a img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+article figure figcaption h4 {
+  font-weight: 700;
+  padding-top: 0.5em;
 }
